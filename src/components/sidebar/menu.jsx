@@ -81,16 +81,17 @@ const Menu = [
   },
 
   {
-    path: "/Databases", icon: "fa fa-briefcase", title: "ARAB", 
+    path: "/ERO",
+    icon: "ion-md-help-buoy",
+    title: "EROs",
     children: [
-      { path: "/databases/titles", title: "Titles" },
-      { path: "/databases/organizations", title: "Organizations" },
-      { path: "/databases/banks", title: "Banks" },
-      { path: "/databases/insurances", title: "Insurances" },
-      { path: "/databases/reservedusernames", title: "Reserved Usernames" },
-      { path: "/databases/termofuses/", title: "Term of USe" },
-      { path: "/databases/privacypolicies/", title: "Privacy Policy" },
-      { path: "/databases/meta", title: "Meta information" },	  
+      { path: "/ero/areas", title: "Areas" },	
+      { path: "/ero/eros", title: "EROs" },
+      { path: "/ero/eros/new", title: "Add ERO" },
+      { path: "/ero/searchEROs", title: "Search in EROs" },
+      { path: "/ero/incidents", title: "Incidents" },	  
+      { path: "/ero/incidents/new", title: "Add Incident" },
+      { path: "/ero/eevents", title: "Emergency Events" },		  
     ],
   },
 
