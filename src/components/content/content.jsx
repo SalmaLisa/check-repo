@@ -36,21 +36,12 @@ import FormElements from "./../../pages/form/form-elements.js";
 import FormWizards from "./../../pages/form/form-wizards.js";
 import FormPlugins from "./../../pages/form/form-plugins";
 import TableBasic from "./../../pages/table/table-basic.js";
-import Table from "./../../pages/table/table-data.js";
-import PosCustomerOrder from "./../../pages/pos/customer-order.js";
-import PosKitchenOrder from "./../../pages/pos/kitchen-order.js";
-import PosCounterCheckout from "./../../pages/pos/counter-checkout.js";
-import PosTableBooking from "./../../pages/pos/table-booking.js";
-import PosMenuStock from "./../../pages/pos/menu-stock.js";
+
 //import ChartJS from "./../../pages/chart/chart-js.js";
 import ChartD3 from "./../../pages/chart/chart-d3.js";
 import ChartApex from "./../../pages/chart/chart-apex.js";
-import Calendar from "./../../pages/calendar/calendar.js";
-import SchedulerCal from "./../../pages/calendar/scheduler.js";
-import SchedulerfCal from "./../../pages/calendar/newscheduler.js";
 import Map from "./../../pages/map/map.js";
 import Gallery from "./../../pages/gallery/gallery.js";
-import PageBlank from "./../../pages/option/page-blank.js";
 import PageWithFooter from "./../../pages/option/page-with-footer.js";
 import PageWithoutSidebar from "./../../pages/option/page-without-sidebar.js";
 import PageWithRightSidebar from "./../../pages/option/page-with-right-sidebar.js";
@@ -80,33 +71,13 @@ import LoginV2 from "../../pages/user/login.js";
 import RegisterV3 from "./../../pages/register.js";
 import User from "./../../pages/clinic/user.js";
 import UserTable from "./../../pages/clinic/users.js";
-import ClinicSolo from "./../../pages/clinic/clinicsolo.js";
-import ClinicSoloTable from "./../../pages/clinic/clinicsolos.js";
-import Doctor from "./../../pages/clinic/doctor.js";
-import DoctorTable from "./../../pages/clinic/doctors.js";
-
-//import CarBrand from "./../../pages/garage/carbrand.js";
-//import CarBrandTable from "./../../pages/garage/carbrands.js";
-
-import TermofUSeTable from './../../pages/databases/termofuses.js';
-import PrivacyPolicyTable from './../../pages/databases/privacypolicies.js';
-//import RightsPermission from './../../pages/user/rightspermission.js';
-
 import Skill from "./../../pages/user/skill.js";
 import SkillTable from "./../../pages/user/skills.js";
-//import Certificate from "./../../pages/user/certificate.js";
-//import CertificateTable from "./../../pages/user/certificates.js";
 import AdminShiftsTable from "./../../pages/user/adminshifts.js";
 import Shift from "./../../pages/user/shift.js";
 import ShiftTable from "./../../pages/user/shifts.js";
 import Leave from "./../../pages/user/leave.js";
 import LeaveTable from "./../../pages/user/leaves.js";
-import Incident from "./../../pages/ero/incident.js";
-import IncidentTable from "./../../pages/ero/incidents.js";
-import ERO from "./../../pages/ero/ero.js";
-import EROsTable from "./../../pages/ero/eros";
-import Freelancer from "./../../pages/user/freelancer.js";
-import FreelancerTable from "./../../pages/user/freelancers.js";
 
 //import Review from "./../../pages/review/review.js";
 
@@ -124,9 +95,7 @@ import Userrole_new from "../../pages/user/userrole_new";
 import ModulePermission from "../../pages/user/modulepermission";
 import ModulePermissionTable from "../../pages/user/modulepermissions";
 
-import EmailTemplate from "../../pages/email/mail-template";
-import privacypolicy from "../../pages/databases/privacypolicy.js";
-import termofuse from "../../pages/databases/termofuse.js";
+
 
 function setTitle(path, routeArray) {
 	var pageTitle;
