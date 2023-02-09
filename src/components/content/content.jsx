@@ -243,8 +243,7 @@ class Content extends React.Component {
 
 								{/* <ProtectedRoute path="/clinic/tcmsessions/:id" title="TCMSession" component={AddTcmSession} /> */}
 								
-								<Route path="/messenger" title="VideoChat" component={VideoChat} />
-								<Route path="/contacts" title="Contacts" component={Contacts} />
+							
 
 								{/* <Provider store={store}> */}
 								<Route path="/user/profile" title="Extra Profile" component={Profile} />

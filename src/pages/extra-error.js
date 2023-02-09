@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PageSettings } from './../../config/page-settings.js';
+import { PageSettings } from './../config/page-settings.js';
 
 class ExtraError extends React.Component {
 	static contextType = PageSettings;
