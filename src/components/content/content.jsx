@@ -57,14 +57,8 @@ import PageWithMixedMenu from "./../../pages/option/page-with-mixed-menu.js";
 import PageBoxedLayoutWithMixedMenu from "./../../pages/option/page-boxed-layout-with-mixed-menu.js";
 import PageWithTransparentSidebar from "./../../pages/option/page-with-transparent-sidebar.js";
 import PageWithSearchSidebar from "./../../pages/option/page-with-search-sidebar.js";
-import ExtraTimeline from "./../../pages/extra/extra-timeline.js";
-import ExtraComingSoon from "./../../pages/extra/extra-coming-soon.js";
-import ExtraSearch from "./../../pages/extra/extra-search.js";
-import ExtraInvoice from "./../../pages/extra/extra-invoice.js";
-import ExtraError from "./../../pages/extra/extra-error.js";
+import ExtraError from "./../../pages/extra-error.js";
 import Profile from "./../../pages/user/profile.js";
-import ExtraScrumBoard from "./../../pages/extra/extra-scrum-board.js";
-import ExtraCookieAcceptanceBanner from "./../../pages/extra/extra-cookie-acceptance-banner.js";
 //import LoginV1 from './../../pages/user/login-v1.js';
 import Usersa from "./../../pages/user/usersa.js";
 import LoginV2 from "../../pages/user/login.js";
@@ -238,12 +232,6 @@ class Content extends React.Component {
 								<Route path="/page-option/boxed-layout-with-mixed-menu" title="PageBoxedLayoutWithMixedMenu" component={PageBoxedLayoutWithMixedMenu}/>
 								<Route path="/page-option/with-transparent-sidebar"	title="PageWithTransparentSidebar" component={PageWithTransparentSidebar} />
 								<Route path="/page-option/with-search-sidebar" title="Page With Search Sidebar" component={PageWithSearchSidebar} />
-								<Route path="/extra/timeline" title="Extra Timeline" component={ExtraTimeline} />
-								<Route path="/extra/coming-soon" title="Extra Coming Soon" component={ExtraComingSoon} />
-								<Route path="/extra/search" title="Extra Search Results" component={ExtraSearch} />
-								<Route path="/extra/invoice" title="Extra Invoice" component={ExtraInvoice} />
-								<Route path="/extra/scrum-board" title="Extra Scrum Board" component={ExtraScrumBoard} />
-								<Route path="/extra/cookie-acceptance-banner" title="Extra Cookie Acceptance Banner" component={ExtraCookieAcceptanceBanner} />
 								<Route path="/user/permissions/:id" title="Permissions" component={UserRole} />
 								<Route path="/user/permissions" title="Permissions" component={PermissionTab} />
 								<Route path="/user/userroles/:id" title="Userrole" component={Userrole_new} />
