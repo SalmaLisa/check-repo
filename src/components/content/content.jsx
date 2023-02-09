@@ -216,7 +216,7 @@ class Content extends React.Component {
 								<ProtectedRoute path="/user/shifts" title="Shifts" component={ShiftTable} />
 								<ProtectedRoute path="/user/leaves/:id" title="Leave" component={Leave} />
 								<ProtectedRoute path="/user/leaves" title="Leaves" component={LeaveTable} />
-	//							<ProtectedRoute path="/planning/leaves" title="AdminSkills" component={AdminSkillsTable} />								
+			        			{/* <ProtectedRoute path="/planning/leaves" title="AdminSkills" component={AdminSkillsTable} />								 */}
 								<Route path="/clinic/yourdrive/" title="Your Drive" component={YourDrive} />
 								<Route path="/clinic/fileviewer" title="file viewer" component={FileView} />
 
@@ -242,12 +242,12 @@ class Content extends React.Component {
 								<Route path="/form/wizards" title="FormWizards" component={FormWizards} />
 								<Route path="/form/form" title="FormPlugins" component={FormPlugins} />
 								<Route path="/table/basic" title="TableBasic" component={TableBasic} />
-								<Route path="/table/data" title="Table" component={Table} />
-								<Route path="/pos/customer-order" title="PosCustomerOrder" component={PosCustomerOrder} />
+								{/* <Route path="/table/data" title="Table" component={Table} /> */}
+								{/* <Route path="/pos/customer-order" title="PosCustomerOrder" component={PosCustomerOrder} />
 								<Route path="/pos/kitchen-order" title="PosKitchenOrder" component={PosKitchenOrder} />
 								<Route path="/pos/counter-checkout" title="PosCounterCheckout" component={PosCounterCheckout} />
 								<Route path="/pos/table-booking" title="PosTableBooking" component={PosTableBooking} />
-								<Route path="/pos/menu-stock" title="PosMenuStock" component={PosMenuStock} />
+								<Route path="/pos/menu-stock" title="PosMenuStock" component={PosMenuStock} /> */}
 								{/* <Route path="/chart/js" title="ChartJS" component={ChartJS} /> */}
 								<Route path="/chart/d3" title="ChartD3" component={ChartD3} />
 								<Route path="/chart/apex" title="ChartApex" component={ChartApex} />
@@ -284,7 +284,7 @@ class Content extends React.Component {
 								<Route path="/user/modulepermissions/new" title="Permission" component={ModulePermission} />
 								<Route path="/user/modulepermissions" title="Permission" component={ModulePermissionTable} />
 								
-								<ProtectedRoute path="/messenger" title="Messenger" component={Messenger} />
+								{/* <ProtectedRoute path="/messenger" title="Messenger" component={Messenger} /> */}
 
 								{/* <ProtectedRoute path="/clinic/tcmsessions/:id" title="TCMSession" component={AddTcmSession} /> */}
 								
