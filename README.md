@@ -1,4 +1,8 @@
 # ailuon
+
+[![Continuous Integration and Deployment](https://github.com/tcmfiles/Aiempire/actions/workflows/file.yml/badge.svg)](https://github.com/tcmfiles/Aiempire/actions/workflows/file.yml)
+
+
 to install packages with conflict
 npm i  --legacy-peer-deps
 
