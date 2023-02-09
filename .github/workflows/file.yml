@@ -18,7 +18,7 @@ jobs:
           ls -la
       - name: Copy .env
         run: |
-          cp -a -r .env ecosystem.config.js ./../tmp/
+          cp -a -r ecosystem.config.js ./../tmp/
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -36,6 +36,15 @@ jobs:
       - name: Install dependencies
         run: |
           npm install --legacy-peer-deps   
+      
+
+      - name: Build React App
+        run: |
+          npm run build
+
+      - name: Copy build files to target path
+        run: |
+          cp -r build/* ./../../../../../public_html/
 
       - name: Move Files Back
         run: |
