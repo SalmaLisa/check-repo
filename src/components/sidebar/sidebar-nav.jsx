@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { apiUrl } from "../../config/config.json";
 import auth from "../../services/authservice";
 import http from "../../services/httpService";
-import { getKanbans } from "../../services/kanbans.js";
+
 import { PageSettings } from "./../../config/page-settings.js";
 import { loadCurrentUser } from "./../../store/users";
 import menus from "./menu.jsx";
@@ -21,46 +21,16 @@ class SidebarNav extends React.Component {
       currentUser: {},
       loading: true,
       menus: menus,
-      kanbansData: [],
-      allkanbans: [],
-      kanbans: [],
+  
+   
       permissions: [],
     };
 
     this.handleSidebarSearch = this.handleSidebarSearch.bind(this);
   }
 
-  async getAllKanbans() {
-    const kanbansData = await getKanbans();
-    this.setState({
-      kanbansData: kanbansData.data,
-    });
-    this.state.kanbansData.map((kanban) => {
-      this.setState({
-        allkanbans: [
-          ...this.state.allkanbans,
-          //{ path: `/kanban/allkanbans/${kanban._id.split(" ").join("-").toLowerCase()}`, title: kanban.name },
-          { path: `/kanban/allkanbans/${kanban._id}`, title: kanban.name },
-        ],
-      });
-    });
-    this.setState({
-      kanbans: [
-        {
-          path: "/kanban/allkanbans",
-          title: "Kanbans",
-          children: this.state.allkanbans,
-        },
-      ],
-    });
-    // console.log("All kanbans menu ", this.state.allkanbans);
-    // console.log("All kanbans menu ", this.state.kanbans);
-    //this.state.menus[24].children.splice(0, 0, this.state.kanbans[0]);
-    this.state.menus.map((item) => {
-      if (item.path === "/Kanban")
-        item.children.splice(0, 0, this.state.kanbans[0]);
-    });
-  }
+
+
 
   async getRoles() {
     //const { data: profiles } = await http.get(apiUrl + "/profiles");
@@ -87,7 +57,6 @@ class SidebarNav extends React.Component {
     const user = auth.getProfile();
     if (user) {
       await this.props.loadCurrentUser(user._id);
-      await this.getAllKanbans();
       await this.getRoles();
     }
   }
