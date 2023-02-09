@@ -60,7 +60,6 @@ import PageWithSearchSidebar from "./../../pages/option/page-with-search-sidebar
 import ExtraError from "./../../pages/extra-error.js";
 import Profile from "./../../pages/user/profile.js";
 //import LoginV1 from './../../pages/user/login-v1.js';
-import Usersa from "./../../pages/user/usersa.js";
 import LoginV2 from "../../pages/user/login.js";
 import RegisterV3 from "./../../pages/register.js";
 import User from "./../../pages/clinic/user.js";
@@ -187,7 +186,6 @@ class Content extends React.Component {
 								<Route path="/email/compose" title="Email Compose" component={EmailCompose} />
 								<Route path="/email/detail" title="Email Detail" component={EmailDetail} />
 								<Route path="/widgets" title="Widgets" component={Widgets} />
-								<Route path="/user/usersa" title="Usera" component={Usersa} />
 								<Route path="/ui/general" title="UI General" component={UIGeneral} />
 								<Route path="/ui/typography" title="UI Typography" component={UITypography} />
 								<Route path="/ui/tabs-accordion" title="UI Tabs Accordion" component={UITabsAccordion} />
