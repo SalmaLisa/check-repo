@@ -174,7 +174,8 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
-    "@fortawesome/fontawesome-free": "^5.15.1"
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "eslint-plugin-react-hooks": "^4.6.0"
   },
   "plugins": [
     "syntax-decorators",
