@@ -44,7 +44,7 @@ jobs:
 
       - name: Copy build files to target path
         run: |
-          cp -r build/* ./../../../public_html/
+          cp -r build/* ./../../../../public_html/
 
       - name: Move Files Back
         run: |
