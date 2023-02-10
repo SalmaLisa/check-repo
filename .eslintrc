@@ -8,6 +8,6 @@
         "ignoreRestSiblings": false
       }
     ],
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
