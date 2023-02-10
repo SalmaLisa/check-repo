@@ -11,7 +11,7 @@
     "react-hooks/exhaustive-deps": "warn"
   },
   "env": {
-    "CI": {
+    "node": {
       "rules": {
         "no-unused-vars": "off",
         "react-hooks/exhaustive-deps": "off"
