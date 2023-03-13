@@ -16,9 +16,9 @@ jobs:
         run: |
           echo "Before checkout:"
           ls -la
-      - name: Copy .env
-        run: |
-          cp -a -r ecosystem.config.js ./../tmp/
+      #- name: Copy .env
+        #run: |
+          #cp -a -r ecosystem.config.js ./../tmp/
       - name: Checkout code
         uses: actions/checkout@v3
 
