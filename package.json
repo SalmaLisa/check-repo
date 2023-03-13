@@ -158,7 +158,7 @@
     "@babel/preset-env": "7.5.5"
   },
   "scripts": {
-    "start": "cross-env PORT=3900 react-scripts  --openssl-legacy-provider start",
+    "start": "cross-env PORT=3900 react-scripts start",
     "build": "react-scripts --max_old_space_size=8048 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
