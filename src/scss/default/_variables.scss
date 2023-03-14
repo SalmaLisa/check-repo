@@ -22,6 +22,7 @@
   21.0 Card Setting
   22.0 Dropown Setting
   23.0 Progress Setting
+  24. colornames https://htmlcolorcodes.com/color-names/
 */
 
 // 1.0 Color system
@@ -43,6 +44,77 @@ $silver:      #b6c2c9 !default;
 $teal:        #00acac !default;
 $white:       #FFFFFF !default;
 $yellow:      #ffd900 !default;
+
+$salmon:      #FA8072 !default;
+$darksalmon:  #E9967A !default;
+$lightsalmon: #FFA07A !default;
+$champagne:   #F7E7CE !default;
+$bordeaux:    #5F021F !default;
+$gold:        #FFD700 !default;
+$mint:        #3EB489 !default;
+$coffeemilk:  #A67B5B !default;
+$navy:        #000080 !default;
+$kiwi:        #8ee53f !default;
+$kingblue:    #4590C9 !default;
+$creme:       #FFFDD0 !default;
+$suede:       #a3907d !default;
+$indianred:   #CD5C5C !default;
+$lightcoral:  #F08080 !default;
+$crimson:     #DC143C !default;
+$firebrick:   #B22222 !default;
+$darkred:     #8B0000 !default;
+$lightpink:   #FFB6C1 !default;
+$hotpink:     #FF69B4 !default;
+$deeppink:    #FF1493 !default;
+$tomato:      #FF6347 !default;
+$darkorange:  #FF8C00 !default;
+$khaki:       #F0E68C !default;
+$thistle:     #D8BFD8 !default;
+$plum:        #DDA0DD !default;
+$violet:      #EE82EE !default;
+$orchid:      #DA70D6 !default;
+$fuchsia:     #FF00FF !default;
+$magenta:     #FF00FF !default;
+$mediumpurple:#9370DB !default;
+$rebeccapurple:#663399 !default;
+$blueviolet:  #8A2BE2 !default;
+$slateblue:   #6A5ACD !default;
+$darkslateblue:   #483D8B !default;
+$greenyellow: #ADFF2F !default;
+$chartreuse:  #7FFF00 !default;
+$lawngreen:   #7CFC00 !default;
+$palegreen:   #98FB98 !default;
+$springgreen: #00FF7F !default;
+$seagreen:    #2E8B57 !default;
+$forestgreen: #228B22 !default;
+$olivedrab:   #6B8E23 !default;
+$olive:       #808000 !default;
+$darkolivegreen:   #556B2F !default;
+$mediumaquamarine: #66CDAA !default;
+$darkseagreen:     #8FBC8B !default;
+$aquamarine:       #7FFFD4 !default;
+$paleturquoise:    #AFEEEE !default;
+$turquoise:        #40E0D0 !default;
+$cadetblue:        #5F9EA0 !default;
+$steelblue:        #4682B4 !default;
+$lightsteelblue:   #B0C4DE !default;
+$lightblue:        #ADD8E6 !default;
+$skyblue:          #87CEEB !default;
+$lightskyblue:     #87CEFA !default;
+$deepskyblue:      #00BFFF !default;
+$dodgerblue:       #1E90FF !default;
+$cornflowerblue:   #6495ED !default;
+$royalblue:        #4169E1 !default;
+$navajowhite:      #FFDEAD !default;
+$burlywood:        #DEB887 !default;
+$rosybrown:        #BC8F8F !default;
+$peru:             #CD853F !default;
+$sienna:           #A0522D !default;
+$darkgray:         #A9A9A9 !default;
+$dimgray:          #696969 !default;
+$lightslategray:   #778899 !default;
+$darkslategray:    #2F4F4F !default;
+
 $inverse:     $dark !default;
 $link-color:  $blue !default;
 $gray-100:    #f8f9fa !default;
@@ -71,6 +143,76 @@ $colors: (
 	'teal': $teal,
 	'white': $white,
 	'yellow': $yellow,
+	'salmon': $salmon,
+	'darksalmon': $darksalmon,
+	'lightsalmon': $lightsalmon, 
+	'champagne': $champagne,   
+	'bordeaux': $bordeaux,    
+	'gold': $gold,        
+	'mint': $mint,        
+	'coffeemilk': $coffeemilk,  
+	'navy': $navy,        
+	'kiwi': $kiwi,        
+	'kingblue': $kingblue,    
+	'creme': $creme,       
+	'suede': $suede,       
+	'indianred': $indianred,   
+	'lightcoral': $lightcoral,  
+	'crimson': $crimson,     
+	'firebrick': $firebrick,   
+	'darkred': $darkred,     
+	'lightpink': $lightpink,   
+	'hotpink': $hotpink,     
+	'deeppink': $deeppink,    
+	'tomato': $tomato,
+	'darkorange': $darkorange, 
+	'khaki': $khaki,     
+	'thistle': $thistle,    
+	'plum': $plum,       
+	'violet': $violet,
+	'orchid': $orchid,
+	'fuchsia': $fuchsia,  	
+	'magenta': $magenta,  
+	'mediumpurple': $mediumpurple,
+	'rebeccapurple': $rebeccapurple,
+	'blueviolet': $blueviolet,  
+	'slateblue': $slateblue,   
+	'darkslateblue': $darkslateblue, 
+	'greenyellow': $greenyellow, 
+	'chartreuse': $chartreuse,  
+	'lawngreen': $lawngreen,   
+	'palegreen': $palegreen,   
+	'springgreen': $springgreen,  
+	'seagreen': $seagreen,    
+	'forestgreen': $forestgreen, 
+	'olivedrab': $olivedrab,   
+	'olive': $olive,       
+	'darkolivegreen': $darkolivegreen, 
+	'mediumaquamarine': $mediumaquamarine,
+	'darkseagreen': $darkseagreen,    
+	'aquamarine': $aquamarine,      
+	'paleturquoise': $paleturquoise,   
+	'turquoise': $turquoise,       
+	'cadetblue': $cadetblue,       
+	'steelblue': $steelblue,       
+	'lightsteelblue': $lightsteelblue,  
+	'lightblue': $lightblue,       
+	'skyblue': $skyblue,         
+	'lightskyblue': $lightskyblue,    
+	'deepskyblue': $deepskyblue,
+	'dodgerblue': $dodgerblue, 
+	'cornflowerblue': $cornflowerblue,
+	'royalblue': $royalblue,  
+	'navajowhite': $navajowhite,
+	'burlywood': $burlywood,       
+	'rosybrown': $rosybrown,       
+	'peru': $peru,            
+	'sienna': $sienna,          
+	'darkgray': $darkgray,        
+	'dimgray': $dimgray,         
+	'lightslategray': $lightslategray,  
+	'darkslategray': $darkslategray,   
+	
 	'muted': darken($silver, 30%),
 	'aqua': $cyan,
 	'gray-100': $gray-100,
