@@ -159,7 +159,7 @@
   },
   "scripts": {
     "start": "cross-env PORT=3900 react-scripts export NODE_OPTIONS=--openssl-legacy-provider start",
-    "build": "react-scripts --max_old_space_size=8048 build",
+    "build": "react-scripts --max_old_space_size=8048 export NODE_OPTIONS=--openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
