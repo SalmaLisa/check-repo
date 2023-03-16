@@ -36,7 +36,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install --legacy-peer-deps
-          npm audit fix --force
       
 
       - name: Build React App
