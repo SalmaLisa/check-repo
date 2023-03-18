@@ -1,4 +1,4 @@
-# AImpite
+# AImpire
 
 [![Continuous Integration and Deployment](https://github.com/tcmfiles/Aiempire/actions/workflows/file.yml/badge.svg)](https://github.com/tcmfiles/Aiempire/actions/workflows/file.yml)
 
