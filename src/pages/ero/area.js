@@ -63,6 +63,7 @@ class Area extends Form {
   schema = Joi.object({
     name: Joi.string(),
     descriptions: Joi.string(),
+    floor: Joi.string(),	
     coordinates: Joi.string(),	
   });
 
@@ -88,6 +89,7 @@ class Area extends Form {
       coordinates: Area.coordinates,
       name: Area.name,
       descriptions: Area.descriptions,
+      floor: Area.floor,	  
     };
   }
 
