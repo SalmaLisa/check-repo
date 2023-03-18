@@ -1,35 +1,64 @@
-import http from './httpService'; 
-import {apiUrl} from './../config/config.json';
-const apiEndpoint = apiUrl+'/eevents';
+import http from './httpService';
+import { apiUrl } from './../config/config.json';
+const apiEndpoint = apiUrl + '/eevents';
 
 
-  function eeventUrl(id) {
-    return `${apiEndpoint}/${id}`;
+function eeventUrl(id) {
+  return `${apiEndpoint}/${id}`;
+}
+
+export function getServices() {
+  return http.get(apiEndpoint);
+}
+
+export function getService(Id) {
+  return http.get(eeventUrl(Id));
+}
+
+export function saveService(eevent, attachments, onUploadProgress) {
+  const formData = new FormData();
+  //clone
+  const body = { ...eevent };
+  const config = {
+    onUploadProgress: (progressEvent) =>
+      //onUploadProgress(Math.trunc(progressEvent.loaded / progressEvent.total)),
+      onUploadProgress(progressEvent.loaded / progressEvent.total),
+  };
+
+  //update
+  if (eevent._id) {
+    //delete _id
+    delete body._id;
+    delete body.attachments;
+    for (let key in body) {
+      formData.append(key, body[key]);
+    }
+
+    // for uploading files
+    if (attachments != null || undefined && attachments.length > 0) {
+      for (let x = 0; x <= attachments.length; x++) {
+        formData.append('attachments', attachments[x])
+      }
+    }
+
+    return http.put(eeventUrl(eevent._id), formData, config);
   }
-  
-  export function getEevents() {
-    return http.get(apiEndpoint);
+  for (let key in body) {
+    formData.append(key, body[key]);
   }
-  
-  export function getEevent(Id) {
-    return http.get(eeventUrl(Id));
+  if (attachments.length > 0) {
+    for (let x = 0; x <= attachments.length; x++) {
+      formData.append('attachments', attachments[x])
+    }
+  } else {
+    formData.append('attachments', attachments);
   }
-  
-  export function saveEevent(eevent) {
-    //clone
-    const body = { ...eevent };
-    console.log("about to save eevent : " , body);
-   //update
-   if (eevent._id) {
-     delete body._id;
-     return http.put(eeventUrl(eevent._id),body);
-   }
- 
-   //add a new eevent
-   return http.post(apiEndpoint, eevent);
- }
-  
-  //delete eevents
-  export function deleteEevent(Id) {
-    return http.delete(eeventUrl(Id));
-  }  
+
+  //add a new eevent
+  return http.post(apiEndpoint, formData, config);
+}
+
+//delete eevents
+export function deleteService(Id) {
+  return http.delete(eeventUrl(Id));
+}  
