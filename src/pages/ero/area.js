@@ -123,7 +123,7 @@ class Area extends Form {
                     {this.renderInput("name", "name", "text", "Enter name" )}
                     {this.renderTextarea("descriptions", "descriptions", "Enter descriptions" )}
                     {this.renderInput("floor", "Floor", "Floor" )}					
-                    {this.renderInput("coordinates", "coordinates", "text", "Enter coordinates")}
+                    {this.renderInput("coordinates", "coordinates", "text", "Enter coordinates like next 51.68808459737779, 5.308464098289485")}
                     <div className="form-group row">
                       <div className="col-lg-8">
                         <button
