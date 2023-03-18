@@ -1,22 +1,4 @@
-var list = [];
-for (var i = 2019; i >= 1900; i--) {
-  list.push({ value: i, label: i });
-}
-
-var oneToTen = [];
-for (var j = 1; j <= 10; j++) {
-  oneToTen.push({ value: j, label: j });
-}
-
 const AreaOptions = {
-  // selectedRegisteredPatient: [
-  //   {
-  //     value:
-  //       "Username: charlie : full name (charlie chaplin) Day of Birth: 1970-12-21male",
-  //     label:
-  //       "Username: charlie : full name (charlie chaplin) Day of Birth: 1970-12-21male",
-  //   },
-  // ],
   Floor: [
     {value: "Floor001", label: "Floor 1" },
     {value: "Floor002", label: "Floor 2" },
