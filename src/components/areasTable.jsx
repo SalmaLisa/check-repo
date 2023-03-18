@@ -24,6 +24,8 @@ class AreaTable extends Component {
       ),
     },
     { label: "Name", path: "name" },
+    { label: "Coordinates", path: "coordinates" },	
+    { label: "altitude", path: "altitude" },		
     { label: "Description",path: "description",
       content: (listArea) => {
         return (
