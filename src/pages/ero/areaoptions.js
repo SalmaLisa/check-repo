@@ -29,7 +29,7 @@ const AreaOptions = {
     {value: "Floor-003", label: "Floor -3" },			
     {value: "Floor-004", label: "Floor -4" },				
   ],
-  Area: [
+  Name: [
     {value: "cantine", label: "kantine" },
     {value: "lobby", label: "lobby" },
     {value: "WC", label: "WC" },
