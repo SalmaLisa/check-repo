@@ -117,7 +117,7 @@ class Eevent extends Form {
                     className="form-horizontal form-bordered"
                     onSubmit={this.handleSubmit}
                   >
-                    {this.renderInput("name", "Name", "text", "Enter Code")}
+                    {this.renderInput("name", "Name", "text", "Enter Name")}
                     {this.renderTextarea("action", "Action", "text", "Enter Action" )}
                     {this.renderInput("step", "Step", "Step" )}
 						{/*    <div className="form-group row">
