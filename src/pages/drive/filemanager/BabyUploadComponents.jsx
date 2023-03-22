@@ -37,7 +37,9 @@ const BabyUploadComponents = ({ file, index, removeFile, path }) => {
       setStatus("pending");
     }
   }, [progress]);
-
+  if (file.name === undefined) {
+    file.name = "" + Math.random().toString();
+  }
   const upload = useCallback(
     async (onUploadProgress) => {
       try {
