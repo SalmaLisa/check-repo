@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Uploader = ({ setModalDialog }) => {
+const Uploader = ({ setModalDialog, image }) => {
+  console.log(image);
   const classes = useStyles();
   const [files, setFiles] = useState([]);
   const { selectedFolder } = useSelector((store) => store.filemanager);
@@ -59,6 +60,12 @@ const Uploader = ({ setModalDialog }) => {
       acceptedFiles.map((file) => setFiles((fls) => [...fls, file]));
     },
   });
+
+  useEffect(() => {
+    if (image !== null) {
+      setFiles((fls) => [...fls, image]);
+    }
+  }, []);
 
   const removeFile = (index) => {
     var newFiles = [...files];

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import BabyUploadComponents from "./BabyUploadComponents";
 import {
   FullFileBrowser,
   setChonkyDefaults,
@@ -40,8 +41,8 @@ import { apiUrl } from "../../../config/config.json";
 
 import FileManagerSidebar from "./FileManagerSidebar";
 import { useHistory } from "react-router";
-import { saveAs } from 'file-saver';
-
+import { saveAs } from "file-saver";
+import WebCam from "react-webcam";
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 const theme = createTheme({
   typography: {
@@ -134,8 +135,8 @@ const FileManagerContainer = () => {
   const [renamePath, setRenamePath] = useState("");
   const [newFolderName, setNewFolderName] = useState("");
   const [newFolderPath, setNewFolderPath] = useState("");
-  const [show,setShow] = useState(false)
-  const [fpath,setFpath] = useState('')
+  const [show, setShow] = useState(false);
+  const [fpath, setFpath] = useState("");
 
   const handleRename = (e) => {
     e.preventDefault();
@@ -194,10 +195,10 @@ const FileManagerContainer = () => {
   };
   const [files, setFiles] = useState([]);
   const [folderChain, setFolderChain] = useState([]);
-const closeFileViewer = ()=>{
-  setShow(false)
-  setFpath('')
-}
+  const closeFileViewer = () => {
+    setShow(false);
+    setFpath("");
+  };
 
   const handleAction = (data) => {
     console.log(data.id);
@@ -210,11 +211,17 @@ const closeFileViewer = ()=>{
           dispatch(setSelectedFolder(data?.payload?.targetFile.path));
           dispatch(getFilesList(data?.payload?.targetFile.path));
         } else {
-          if(data?.payload?.files[0]?.path && !data?.payload?.files[0]?.isDir){
-            history.push(`/clinic/fileviewer`,{state:data?.payload?.files[0]?.path})
-          }else if(data?.payload?.targetFile?.path){
-            history.push(`/clinic/fileviewer`,{state:data?.payload?.targetFile?.path})
-
+          if (
+            data?.payload?.files[0]?.path &&
+            !data?.payload?.files[0]?.isDir
+          ) {
+            history.push(`/clinic/fileviewer`, {
+              state: data?.payload?.files[0]?.path,
+            });
+          } else if (data?.payload?.targetFile?.path) {
+            history.push(`/clinic/fileviewer`, {
+              state: data?.payload?.targetFile?.path,
+            });
           }
         }
         break;
@@ -251,13 +258,16 @@ const closeFileViewer = ()=>{
         break;
       case "download_files":
         const url = `${apiUrl}${data?.state?.selectedFiles[0]?.path}`;
-        const name = data?.state?.selectedFiles[0]?.path
-        const c = name.split('/')
-        const fileName = c[c.length-1]
-        const file = data?.state?.selectedFiles[0]?.path
-        let b  = file.split('.')
-        const type = b[b.length-1]
-        saveAs(`${apiUrl}${data?.state?.selectedFiles[0]?.path}`, `${fileName}.${type}`);
+        const name = data?.state?.selectedFiles[0]?.path;
+        const c = name.split("/");
+        const fileName = c[c.length - 1];
+        const file = data?.state?.selectedFiles[0]?.path;
+        let b = file.split(".");
+        const type = b[b.length - 1];
+        saveAs(
+          `${apiUrl}${data?.state?.selectedFiles[0]?.path}`,
+          `${fileName}.${type}`
+        );
         break;
       default:
         break;
@@ -281,6 +291,32 @@ const closeFileViewer = ()=>{
     ]);
   }, [foldersList]);
   useEffect(() => {}, [folderChain]);
+  // JS for camera module
+  const [cameraState, setCameraState] = useState(false);
+  const [image, setImage] = useState(null);
+  const cameraRef = useRef(null);
+  const [successModal, setSuccessModal] = useState(false);
+  const takeImageAndPass = () => {
+    setCameraState(false);
+    const img = cameraRef.current.getScreenshot();
+    setImage(dataURLtoFile(img, "Photo" + Math.random().toString() + ".png"));
+    setSuccessModal(true);
+  };
+
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+
   return (
     <>
       <div className="row h-100">
@@ -329,7 +365,7 @@ const closeFileViewer = ()=>{
           </FullFileBrowser>
           {/* {show && <Ticketprofile/>} */}
           {/* {show && <FilesViewer file={fpath} closeFileViewer={closeFileViewer}/>} */}
-          
+
           {actionLoader && (
             <div
               style={{
@@ -352,10 +388,32 @@ const closeFileViewer = ()=>{
       </div>
       <Modal isOpen={modalDialog} toggle={() => toggleModal()}>
         <ModalHeader toggle={() => toggleModal()}>
-          Upload Files Here
+          <div>Upload Files Here</div>
+          <button
+            onClick={() => {
+              toggleModal();
+              setCameraState(!cameraState);
+            }}
+            style={{ position: "absolute", right: "40px", top: "10px" }}
+            className="btn btn-primary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="white"
+              class="bi bi-camera"
+            >
+              {" "}
+              <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />{" "}
+              <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />{" "}
+            </svg>
+            Take Photo
+          </button>
         </ModalHeader>
+
         <ModalBody>
-          <Uploader setModalDialog={(d) => setModalDialog(d)} />
+          <Uploader image={image} setModalDialog={(d) => setModalDialog(d)} />
         </ModalBody>
       </Modal>
 
@@ -436,6 +494,47 @@ const closeFileViewer = ()=>{
             </button>
           </Form>
         </ModalBody>
+      </Modal>
+      <Modal isOpen={cameraState}>
+        <ModalHeader>WebCam</ModalHeader>
+        <ModalBody>
+          <center>
+            <WebCam height={500} width={400} ref={cameraRef} />
+          </center>
+        </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-primary" onClick={takeImageAndPass}>
+            Snap
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => setCameraState(!cameraState)}
+          >
+            Close
+          </button>
+        </ModalFooter>
+      </Modal>
+      <Modal isOpen={successModal}>
+        <ModalHeader>Uploading</ModalHeader>
+        <ModalBody>
+          <p>Your file has been uploaded successfully</p>
+          {image !== null ? (
+            <BabyUploadComponents file={image} index={0} />
+          ) : (
+            " "
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setImage(null);
+              setSuccessModal(!successModal);
+            }}
+          >
+            Close
+          </button>
+        </ModalFooter>
       </Modal>
     </>
   );
