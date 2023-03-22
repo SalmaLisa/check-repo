@@ -38,13 +38,13 @@ jobs:
           npm install --legacy-peer-deps
       
 
-      - name: Build React App
-        run: |
-          CI=false npm run build
+      #- name: Build React App
+        #run: |
+          #CI=false npm run build
 
-      - name: Copy build files to target path
-        run: |
-          cp -r build/* ./../../../../public_html/
+      #- name: Copy build files to target path
+        #run: |
+          #cp -r build/* ./../../../../public_html/
 
       - name: Move Files Back
         run: |
