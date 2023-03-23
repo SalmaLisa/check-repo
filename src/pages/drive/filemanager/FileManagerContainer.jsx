@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import BabyUploadComponents from "./BabyUploadComponents";
+
 import {
   FullFileBrowser,
   setChonkyDefaults,
@@ -299,7 +300,9 @@ const FileManagerContainer = () => {
   const takeImageAndPass = () => {
     setCameraState(false);
     const img = cameraRef.current.getScreenshot();
-    setImage(dataURLtoFile(img, "Photo" + Math.random().toString() + ".png"));
+    setImage(
+      dataURLtoFile(img, "Photo_" + new Date().getTime().toString() + ".png")
+    );
     setSuccessModal(true);
   };
 
@@ -519,7 +522,11 @@ const FileManagerContainer = () => {
         <ModalBody>
           <p>Your file has been uploaded successfully</p>
           {image !== null ? (
-            <BabyUploadComponents file={image} index={0} />
+            <BabyUploadComponents
+              file={image}
+              index={0}
+              path={selectedFolder}
+            />
           ) : (
             " "
           )}

@@ -10,7 +10,6 @@ import {
   Box,
   Typography,
 } from "@material-ui/core";
-//import apiUrl from "../Data/Config";
 // import File from "@material-ui/icons/InsertDriveFile";
 import Delete from "@material-ui/icons/Delete";
 import { formatBytes } from "react-dropzone-uploader";
