@@ -10,12 +10,12 @@ import {
   Box,
   Typography,
 } from "@material-ui/core";
-import apiUrl from "../Data/Config";
+//import apiUrl from "../Data/Config";
 // import File from "@material-ui/icons/InsertDriveFile";
 import Delete from "@material-ui/icons/Delete";
 import { formatBytes } from "react-dropzone-uploader";
 import axios from "axios";
-// import { apiUrl } from "../../../config/config.json";
+import { apiUrl } from "../../../config/config.json";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { getFilesList } from "../Redux/actions/filemanager";
@@ -37,9 +37,7 @@ const BabyUploadComponents = ({ file, index, removeFile, path }) => {
       setStatus("pending");
     }
   }, [progress]);
-  if (file.name === undefined) {
-    file.name = "" + Math.random().toString();
-  }
+
   const upload = useCallback(
     async (onUploadProgress) => {
       try {
@@ -53,7 +51,7 @@ const BabyUploadComponents = ({ file, index, removeFile, path }) => {
             cronustoken: window.localStorage.getItem("jwtToken"),
           },
           onUploadProgress,
-          url: `${apiUrl.serverPath}/fm/upload`,
+          url: `${apiUrl}/fm/upload`,
           data: formdata,
           cancelToken: source.token,
         });
