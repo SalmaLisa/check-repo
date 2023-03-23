@@ -45,12 +45,10 @@ class FileView extends React.Component {
         department: "",
         subDepartment: "",
         locations: "",
-        deadline: new Date(),
         field: "",
         tags: "",
         reference: "",
         //assigned to one only
-        assignedTo: "",
         status: "",
         users: [
           {
@@ -184,12 +182,10 @@ class FileView extends React.Component {
       department: ticket.department,
       subDepartment: ticket.subDepartment,
       locations: ticket.locations,
-      deadline: new Date(ticket.deadline),
       field: ticket.field,
       tags: ticket.tags,
       reference: ticket.reference,
       //assigned to one only
-      assignedTo: ticket.assignedTo,
       status: ticket.status,
       users: this.state.data.users,
       sharedTo: this.state.data.sharedTo,
@@ -215,16 +211,6 @@ class FileView extends React.Component {
       icon: "fas-fa-file-pdf",
       trigger: () => {},
     },
-    {
-      label: "Save as XLS",
-      icon: "fas-fa-file-excel",
-      trigger: () => {},
-    },
-    {
-      label: "Save as CSV",
-      icon: "fa-csv",
-      trigger: () => {},
-    },
   ];
 
   toggleRead = () => this.setState({ read: !this.state.read });
@@ -244,7 +230,7 @@ class FileView extends React.Component {
           </li>
 
         </ol>
-        <h1 className="page-header">Fielviewer</h1>
+        <h1 className="page-header">Fileviewer</h1>
         <div className="row">
           <div className="col-12">
             <Panel>
