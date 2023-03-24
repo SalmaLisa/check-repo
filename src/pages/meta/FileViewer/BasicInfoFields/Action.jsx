@@ -50,7 +50,7 @@ const Actions = ({ actionN, backgroundC }) => {
             </li>
             <li>
               <a className="dropdown-item f-s-13" href="#">
-                <i className="fas fa-edit"></i> Label
+                <i className="fas fa-barcode"></i> Label
               </a>
             </li>
 			
