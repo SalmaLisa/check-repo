@@ -101,7 +101,7 @@ const Menu = [
     title: "Yourdrive",
     badge: "10",
     children: [
-      { path: "/clinic/yourdrive", title: "yourdrive" },
+      { path: "/clinic/yourdrive", title: "Your Drive" },
       { path: "/clinic/search_yourdrive", title: "Search in your drive" },
       { path: "itransportindex.com:4321/dbApp", title: "Mongoose DB" },
     ],
