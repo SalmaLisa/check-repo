@@ -8,7 +8,7 @@ const YourDrive = () => {
     <Provider store={store}>
       <Files />
       <div className="my-4 w-100">
-        <h2>new file manager</h2>
+        <h2>Drive</h2>
       </div>
       <FileManagerContainer />
     </Provider>

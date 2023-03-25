@@ -101,9 +101,20 @@ const Menu = [
     title: "Yourdrive",
     badge: "10",
     children: [
-      { path: "/clinic/yourdrive", title: "yourdrive" },
+      { path: "/clinic/yourdrive", title: "Your Drive" },
       { path: "/clinic/search_yourdrive", title: "Search in your drive" },
       { path: "itransportindex.com:4321/dbApp", title: "Mongoose DB" },
+    ],
+  },
+
+{
+    path: "/metai",
+    icon: "fa fa-cloud",
+    title: "MetAI",
+    badge: "10",
+    children: [
+      { path: "/metai/yourdrive", title: "Admin AI-ML" },
+      { path: "/metai/search_yourdrive", title: "Search in your drive" },
     ],
   },
 

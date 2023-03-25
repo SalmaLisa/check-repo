@@ -45,12 +45,10 @@ class FileView extends React.Component {
         department: "",
         subDepartment: "",
         locations: "",
-        deadline: new Date(),
         field: "",
         tags: "",
         reference: "",
         //assigned to one only
-        assignedTo: "",
         status: "",
         users: [
           {
@@ -184,13 +182,10 @@ class FileView extends React.Component {
       department: ticket.department,
       subDepartment: ticket.subDepartment,
       locations: ticket.locations,
-      deadline: new Date(ticket.deadline),
       field: ticket.field,
       tags: ticket.tags,
       reference: ticket.reference,
       //assigned to one only
-      assignedTo: ticket.assignedTo,
-      status: ticket.status,
       users: this.state.data.users,
       sharedTo: this.state.data.sharedTo,
       sharedTill: this.state.data.sharedTill,
@@ -202,29 +197,13 @@ class FileView extends React.Component {
   setActiveTab = (n) => this.setState({ activeTab: n });
   actions = [
     { label: "Edit", icon: "fa-edit", trigger: () => this.setReadOnly() },
+    { label: "Meta", icon: "fa-info", trigger: () => {},},	
+    { label: "AI", icon: "fa-tags", trigger: () => {},},		
     { label: "Print", icon: "fa-print", trigger: () => {} },
     { label: "Share", icon: "fa-share", trigger: () => {} },
-    {
-      label: "Archive",
-      icon: "fa-archive",
-      trigger: () => {},
-    },
-
-    {
-      label: "Save as PDF",
-      icon: "fas-fa-file-pdf",
-      trigger: () => {},
-    },
-    {
-      label: "Save as XLS",
-      icon: "fas-fa-file-excel",
-      trigger: () => {},
-    },
-    {
-      label: "Save as CSV",
-      icon: "fa-csv",
-      trigger: () => {},
-    },
+    { label: "Archive", icon: "fa-archive",trigger: () => {},},
+    { label: "Save as PDF", icon: "fa-file-pdf", trigger: () => {},},
+    { label: "Label", icon: "fa-barcode", trigger: () => {},},	
   ];
 
   toggleRead = () => this.setState({ read: !this.state.read });
@@ -244,13 +223,12 @@ class FileView extends React.Component {
           </li>
 
         </ol>
-        <h1 className="page-header">Fielviewer</h1>
+        <h1 className="page-header">Fileviewer</h1>
         <div className="row">
           <div className="col-12">
             <Panel>
-              <PanelHeader noButton>Fielviewer</PanelHeader>
+              <PanelHeader noButton>Fileviewer</PanelHeader>
               <PanelBody>
-                <h1>Fiel viewer</h1>
 
                 <ReusableTabNavs
                   actions={this.actions}
