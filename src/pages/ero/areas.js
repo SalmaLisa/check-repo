@@ -1,36 +1,48 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {Panel,PanelHeader,PanelBody,} from "./../../components/panel/panel.jsx";
-import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Panel,
+  PanelHeader,
+  PanelBody,
+} from './../../components/panel/panel.jsx';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 //import FloatSubMenu from './../../components/float-sub-menu/float-sub-menu';
-import Pagination from "../../common/pagination";
-import { paginate } from "../../utils/paginate";
-import AreasTable from "../../components/areasTable";
-import SearchBox from "./../../common/searchBox";
-import _ from "lodash";
-import http from "./../../services/httpService";
-import { apiUrl } from "./../../config/config.json";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Pagination from '../../common/pagination';
+import { paginate } from '../../utils/paginate';
+import AreasTable from '../../components/areasTable';
+import SearchBox from './../../common/searchBox';
+import _ from 'lodash';
+import { getAreas } from '../../services/areas';
+import http from './../../services/httpService';
+import { apiUrl } from './../../config/config.json';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Icons imports
-import newIcon from "../../assets/Icons/new.svg";
-import editIcon from "../../assets/Icons/edit.svg";
-import trashIcon from "../../assets/Icons/trash.svg";
-import csvIcon from "../../assets/Icons/csv.svg";
-import xlsIcon from "../../assets/Icons/xls.svg";
-import pdfIcon from "../../assets/Icons/pdf.svg";
+import newIcon from '../../assets/Icons/new.svg';
+import editIcon from '../../assets/Icons/edit.svg';
+import trashIcon from '../../assets/Icons/trash.svg';
+import csvIcon from '../../assets/Icons/csv.svg';
+import xlsIcon from '../../assets/Icons/xls.svg';
+import pdfIcon from '../../assets/Icons/pdf.svg';
+import { Description } from '@material-ui/icons';
 
 class AreasTableData extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Areas: [],
+      Areas: [
+        {
+          name: '',
+          description: '',
+          coordinates: '',
+        },
+      ],
       pageSize: 10,
       currentPage: 1,
-      sortColumn: { path: "Area", order: "asc" },
-      searchQuery: "",
+      sortColumn: { path: 'Area', order: 'asc' },
+      searchQuery: '',
       checkedFields: [],
       errors: {},
     };
@@ -41,42 +53,50 @@ class AreasTableData extends Component {
   }
 
   async componentDidMount() {
-    axios
-      .get("https://backend.itransportindex.com/api/areas")
-      .then((res) => {
-        const areas = res.data.map((dat) => {
-          let customItems = dat.article;
-          customItems = customItems.split(";;");
-          for (let i = 0; i < customItems.length; i++) {
-            customItems[i] = customItems[i] + "<br/>";
-          }
-          dat.article = customItems.join("");
-          return dat;
-        });
-        this.setState({ Areas: areas });
-      });
+    const data = await getAreas();
+
+    this.setState((preState) => ({
+      Area: data.data,
+    }));
+
+    // axios.get('https://backend.itransportindex.com/api/areas').then((res) => {
+    //   const areas = res.data.map((dat) => {
+    //     let customItems = dat.article;
+    //     customItems = customItems.split(';;');
+    //     for (let i = 0; i < customItems.length; i++) {
+    //       customItems[i] = customItems[i] + '<br/>';
+    //     }
+    //     dat.article = customItems.join('');
+    //     return dat;
+    //   });
+    //   this.setState({ Areas: data });
+    // });
   }
 
   handleDelete = (user) => {
-    const Areas = this.state.Areas.filter(
-      (el) => el._id !== user._id
-    );
+    const Areas = this.state.Areas.filter((el) => el._id !== user._id);
     this.setState({ Areas: Areas });
   };
 
   handleMassDelete = (CheckedFields) => {
     let Area = this.state.Areas;
+
     const originalAreas = this.state.Areas;
     CheckedFields.map(async (AreaId) => {
-      const updated = Area.filter(
-        (Area) => Area._id !== AreaId
-      );
+      const updated = Area.filter((Area) => Area._id !== AreaId);
       Area = updated;
       try {
-        await http.delete(apiUrl + "/areas/" + AreaId);
+        if (window.confirm('Are you sure you want Delete')) {
+          const deleted = await http.delete(apiUrl + '/areas/' + AreaId);
+          if (deleted) {
+            window.location.reload(false);
+          }
+        } else {
+          console.log('cancel');
+        }
       } catch (ex) {
         if (ex.response && ex.response === 404) {
-          alert("already deleted");
+          alert('already deleted');
         }
         this.setState({ Areas: originalAreas });
       }
@@ -121,22 +141,19 @@ class AreasTableData extends Component {
   };
 
   getDataPgnation = () => {
-    const { pageSize, currentPage, Areas, sortColumn, searchQuery } =
-      this.state;
-      
+    const { pageSize, currentPage, Area, sortColumn, searchQuery } = this.state;
+
     //filter maybe next time
-    let filtered = Areas;
+    let filtered = Area;
     if (searchQuery) {
-      filtered = Areas.filter(
+      filtered = Area.filter(
         (el) =>
           el.article.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
           el.title.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
     }
 
-    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-    const Areas = paginate(sorted, currentPage, pageSize);
-    return { data: Areas };
+    return { data: Area };
   };
 
   render() {
@@ -145,96 +162,96 @@ class AreasTableData extends Component {
     // if(count === 0)  return "<p>No data available</p>";
 
     const { data: Areas } = this.getDataPgnation();
-
+    console.log('Areas', Areas);
     return (
       <div>
-        <ol className="breadcrumb float-xl-right">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
+        <ol className='breadcrumb float-xl-right'>
+          <li className='breadcrumb-item'>
+            <Link to='/'>Home</Link>
           </li>
         </ol>
-        <h1 className="page-header">Areas </h1>
+        <h1 className='page-header'>Areas </h1>
         <Panel>
           <PanelHeader>Areas Management</PanelHeader>
 
           <React.Fragment>
             <ToastContainer />
-            <div className="toolbar" style={toolbarStyles}>
+            <div className='toolbar' style={toolbarStyles}>
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="add Area"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='add Area'
                 style={btnStyles}
               >
-                {" "}
-                <Link to="/ero/areas/new">
+                {' '}
+                <Link to='/ero/area/new'>
                   <img style={iconStyles} src={newIcon} />
                 </Link>
               </button>
 
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="edit Area"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='edit Area'
                 style={btnStyles}
               >
-                {" "}
+                {' '}
                 <Link
                   to={
                     this.state.checkedFields
-                      ? `/ero/areas/${this.state.checkedFields[0]}`
-                      : "/ero/areas/"
+                      ? `/ero/area/${this.state.checkedFields[0]}`
+                      : '/ero/area/'
                   }
                 >
                   <img style={iconStyles} src={editIcon} />
-                </Link>{" "}
+                </Link>{' '}
               </button>
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="delete Area"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='delete Area'
                 style={btnStyles}
                 onClick={() => this.handleMassDelete(this.state.checkedFields)}
               >
-                {" "}
+                {' '}
                 <img
-                  style={{ width: "25px", height: "25px" }}
+                  style={{ width: '25px', height: '25px' }}
                   src={trashIcon}
                 />
               </button>
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="Excel"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='Excel'
                 style={btnStyles}
               >
-                {" "}
-                <Link to="/ero/areas/">
+                {' '}
+                <Link to='/ero/areas/'>
                   <img style={iconStyles} src={xlsIcon} />
-                </Link>{" "}
+                </Link>{' '}
               </button>
 
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="csv"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='csv'
                 style={btnStyles}
               >
-                {" "}
-                <Link to="/ero/areas/">
+                {' '}
+                <Link to='/ero/areas/'>
                   <img style={iconStyles} src={csvIcon} />
-                </Link>{" "}
+                </Link>{' '}
               </button>
               <button
-                className="btn btn-default active m-r-5 m-b-5"
-                Area="PDF"
+                className='btn btn-default active m-r-5 m-b-5'
+                Area='PDF'
                 style={btnStyles}
               >
-                {" "}
-                <Link to="/ero/areas/">
+                {' '}
+                <Link to='/ero/areas/'>
                   <img style={iconStyles} src={pdfIcon} />
-                </Link>{" "}
+                </Link>{' '}
               </button>
             </div>
-            <div className="table-responsive">
+            <div className='table-responsive'>
               <SearchBox value={searchQuery} onChange={this.handleSearch} />
               <p
-                className="page-header float-xl-left"
+                className='page-header float-xl-left'
                 style={
                   ({ marginBottom: 5 }, { marginLeft: 20 }, { marginTop: 5 })
                 }
@@ -253,9 +270,9 @@ class AreasTableData extends Component {
             </div>
           </React.Fragment>
 
-          <hr className="m-0" />
+          <hr className='m-0' />
           <PanelBody>
-            <div className="d-flex align-items-center justify-content-center">
+            <div className='d-flex align-items-center justify-content-center'>
               <Pagination
                 itemsCount={count}
                 pageSize={pageSize}
@@ -270,16 +287,16 @@ class AreasTableData extends Component {
   }
 }
 const toolbarStyles = {
-  background: "#c8e9f3",
-  padding: "10px",
+  background: '#c8e9f3',
+  padding: '10px',
 };
 
-const btnStyles = { background: "#348fe2", margin: "0rem" };
+const btnStyles = { background: '#348fe2', margin: '0rem' };
 
 const iconStyles = {
-  width: "25px",
-  height: "25px",
-  marginRight: "0rem",
+  width: '25px',
+  height: '25px',
+  marginRight: '0rem',
 };
 
 export default AreasTableData;

@@ -41,6 +41,7 @@ class SkillTable extends Component {
 	async componentDidMount() {
 		
 		const data = await getSkills();
+		console.log("data",data)
 		this.setState({ Skills: data.data });
 	}
 

@@ -87,7 +87,8 @@ import Userrole_new from "../../pages/user/userrole_new";
 
 import ModulePermission from "../../pages/user/modulepermission";
 import ModulePermissionTable from "../../pages/user/modulepermissions";
-
+import  Area from '../../pages/ero/area';
+import  AreasTableData from '../../pages/ero/areas';
 
 
 function setTitle(path, routeArray) {
@@ -203,6 +204,8 @@ class Content extends React.Component {
 								<Route path="/form/wizards" title="FormWizards" component={FormWizards} />
 								<Route path="/form/form" title="FormPlugins" component={FormPlugins} />
 								<Route path="/table/basic" title="TableBasic" component={TableBasic} />
+										<Route path="/ero/area/:id" title="Area" component={Area} />
+										<Route path="/ero/areas" title="Areas" component={AreasTableData} />
 								{/* <Route path="/table/data" title="Table" component={Table} /> */}
 								{/* <Route path="/pos/customer-order" title="PosCustomerOrder" component={PosCustomerOrder} />
 								<Route path="/pos/kitchen-order" title="PosKitchenOrder" component={PosKitchenOrder} />

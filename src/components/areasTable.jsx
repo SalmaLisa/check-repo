@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import Table from "./../common/table";
 
 class AreaTable extends Component {
+  // area=[
+  //   {
+  //     name:'',
+  //     description:''
+      
+  //   }
+  // ]
   columns = [
     {
       key: "checkbox",
@@ -24,26 +31,27 @@ class AreaTable extends Component {
       ),
     },
     { label: "Name", path: "name" },
-    { label: "Coordinates", path: "coordinates" },	
-    { label: "altitude", path: "altitude" },		
+   
+  	
     { label: "Description",path: "description",
       content: (listArea) => {
         return (
           <div dangerouslySetInnerHTML={{ __html: listArea.description }} />
         );
       },
-    { label: "Floor", path: "floor" },	  
-    { label: "Location", path: "location" },	  
     },
+	  
+    
   ];
   render() {
-    const { TermofUses, onSort, sortColumn } = this.props;
+    const { Areas, onSort, sortColumn } = this.props;
+  
     return (
       <Table
         columns={this.columns}
         sortColumn={sortColumn}
         onSort={onSort}
-        data={TermofUses}
+        data={Areas}
       />
     );
   }

@@ -1,25 +1,40 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import { Panel, PanelHeader, PanelBody, } from "../../components/panel/panel.jsx";
-import Tooltip from "rc-tooltip";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import Joi from "joi";
-import Form from "../../common/form.jsx";
-import { saveArea, getArea } from "./../../services/areas";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import {
+  Panel,
+  PanelHeader,
+  PanelBody,
+} from '../../components/panel/panel.jsx';
+import Tooltip from 'rc-tooltip';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Joi from 'joi';
+import Form from '../../common/form.jsx';
+import { saveArea, getArea } from '../../services/areas';
+import { method } from 'lodash';
+import AreaOptions from './areaoptions';
+import { areIntervalsOverlapping } from 'date-fns';
+// import { saveArea, getArea } from './../../services/areas';
 const Handle = Slider.Handle;
 
 class Area extends Form {
+  done;
+  response;
+  location = {
+    coordinates: ['444444', '3333'],
+  };
   constructor(props) {
     super(props);
 
     this.state = {
       maxDateDisabled: true,
       data: {
-        name: "",
-        descriptions: "",
-        floor: "",		
-        coordinates: "",		
+        name: '',
+        description: '',
+        floor: '',
+        location: {
+          coordinates: ['444444', '3333'],
+        },
       },
       selectedFile: null,
       errors: {},
@@ -29,10 +44,10 @@ class Area extends Form {
       const { value, dragging, index, ...restProps } = props;
       return (
         <Tooltip
-          prefixCls="rc-slider-tooltip"
+          prefixCls='rc-slider-tooltip'
           overlay={value}
           visible={dragging}
-          placement="top"
+          placement='top'
           key={index}
         >
           <Handle value={value} {...restProps} />
@@ -42,17 +57,34 @@ class Area extends Form {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
+  async handleSubmit(event) {
+    const AreaId = this.props.match.params.id;
+    event.preventDefault();
+    console.log('data', JSON.stringify(this.state.data));
+    try {
+      const Response = await saveArea(this.state.data);
+      if (Response) {
+        alert('Data Added Successfully');
+        this.props.history.push('/ero/areas');
+      }
+    } catch (error) {
+      if (error) {
+        alert('There was an error', error);
+      }
+    }
+  }
   async populateArea() {
     try {
       const AreaId = this.props.match.params.id;
-
-      if (AreaId === "new") return;
+      if (AreaId === 'new') return;
       const { data: Area } = await getArea(AreaId);
-      this.setState({ data: this.mapToViewModel(Area) });
+      this.setState({
+        data: Area,
+      });
+      console.log('weldone', Area);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        this.props.history.replace("/error");
+        this.props.history.replace('/error');
     }
   }
 
@@ -63,17 +95,15 @@ class Area extends Form {
   schema = Joi.object({
     name: Joi.string(),
     descriptions: Joi.string(),
-    floor: Joi.string(),	
-    coordinates: Joi.string(),	
+    floor: Joi.string(),
+    coordinates: Joi.string(),
   });
 
-  
   doSubmit = async (Area) => {
     try {
       await saveArea(this.state.data);
-      this.props.history.push("/databases/Areas");
+      this.props.history.push('/databases/Areas');
     } catch (ex) {
-
       if (ex.response) {
         const errors = { ...this.state.errors };
         const path = ex.response.data.split('"')[1];
@@ -89,7 +119,7 @@ class Area extends Form {
       coordinates: Area.coordinates,
       name: Area.name,
       descriptions: Area.descriptions,
-      floor: Area.floor,	  
+      floor: Area.floor,
     };
   }
 
@@ -98,38 +128,44 @@ class Area extends Form {
     return (
       <React.Fragment>
         <div>
-          <ol className="breadcrumb float-xl-right">
-            <li className="breadcrumb-item">
-              <Link to="/form/plugins">Home</Link>
+          <ol className='breadcrumb float-xl-right'>
+            <li className='breadcrumb-item'>
+              <Link to='/form/plugins'>Home</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link to="/ero/areas">Areas</Link>
+            <li className='breadcrumb-item'>
+              <Link to='/ero/areas'>Areas</Link>
             </li>
-            <li className="breadcrumb-item active">Add Area</li>
+            <li className='breadcrumb-item active'>Add Area</li>
           </ol>
-          <h1 className="page-header">
+          <h1 className='page-header'>
             Add Area <small>Area-registration-form</small>
           </h1>
 
-          <div className="row">
-            <div className="col-xl-10">
+          <div className='row'>
+            <div className='col-xl-10'>
               <Panel>
                 <PanelHeader>Add Area</PanelHeader>
-                <PanelBody className="panel-form">
+                <PanelBody className='panel-form'>
                   <form
-                    className="form-horizontal form-bordered"
+                    className='form-horizontal form-bordered'
                     onSubmit={this.handleSubmit}
                   >
-                    {this.renderInput("name", "name", "text", "Enter name" )}
-                    {this.renderTextarea("descriptions", "descriptions", "Enter descriptions" )}
-                    {this.renderInput("floor", "Floor", "Floor" )}					
-                    {this.renderInput("coordinates", "coordinates", "text", "Enter coordinates like next 51.68808459737779, 5.308464098289485")}
-                    <div className="form-group row">
-                      <div className="col-lg-8">
+                    {this.renderSelect('name', 'Name', AreaOptions.Name)}
+
+                    {this.renderTextarea(
+                      'description',
+                      'description',
+                      'Enter descriptions'
+                    )}
+
+                    {this.renderSelect('floor', 'Floor', AreaOptions.Floor)}
+
+                    <div className='form-group row'>
+                      <div className='col-lg-8'>
                         <button
-                          type="submit"
+                          type='submit'
                           disabled={this.validate()}
-                          className="btn btn-primary width-65"
+                          className='btn btn-primary width-65'
                         >
                           Submit
                         </button>
