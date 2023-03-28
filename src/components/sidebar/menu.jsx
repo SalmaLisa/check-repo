@@ -115,6 +115,7 @@ const Menu = [
     children: [
       { path: "/metai/yourdrive", title: "Admin AI-ML" },
       { path: "/metai/search_yourdrive", title: "Search in your drive" },
+      { path: "/metai/LabelStudio", title: "Label Studio" },	  
     ],
   },
 
