@@ -110,7 +110,7 @@ const Menu = [
 {
     path: "/metai",
     icon: "fa fa-cloud",
-    title: "MetAI",
+    title: "AIML",
     badge: "10",
     children: [
       { path: "/metai/yourdrive", title: "Admin AI-ML" },
